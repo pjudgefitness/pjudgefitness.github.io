@@ -28,9 +28,30 @@
 
   .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
+  /* STICKY CTA */
+  .sticky-cta {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 100;
+    background: var(--accent);
+    color: var(--black);
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 10px 18px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: opacity 0.15s, transform 0.15s;
+    box-shadow: 0 2px 12px rgba(232,87,42,0.35);
+  }
+  .sticky-cta:hover { opacity: 0.88; transform: translateY(-1px); }
+
   /* HERO */
   .hero {
-    padding: 80px 0 60px;
+    padding: 80px 0 36px;
     border-bottom: 1px solid var(--border);
   }
   .hero-eyebrow {
@@ -65,7 +86,8 @@
 
   /* ABOUT */
   .about {
-    padding: 60px 0;
+    padding: 48px 0;
+    border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
   }
   .section-label {
@@ -250,17 +272,14 @@
 </head>
 <body>
 
+<a href="mailto:patrickjudgefitness@gmail.com?subject=Getting%20Started%20with%20PJudge%20Fitness&body=Hi%20Patrick%21%20I%27m%20interested%20in%20learning%20more%20about%20your%20remote%20coaching%20programs.%20I%27d%20love%20to%20connect%20and%20figure%20out%20which%20option%20is%20the%20right%20fit%20for%20me." class="sticky-cta">Get Started</a>
+
 <div class="container">
 
   <section class="hero">
     <div class="hero-eyebrow">PJudge Fitness · Remote Coaching</div>
     <h1 class="hero-headline">Train your body.<br><em>Clear your mind.</em></h1>
     <p class="hero-sub">Custom strength & conditioning programming — built around you, delivered remotely, and backed by a coach who actually gives a damn.</p>
-  </section>
-
-  <section class="about">
-    <div class="section-label">About Patrick</div>
-    <p class="about-text">I've spent years coaching people who <strong>didn't think the gym was for them.</strong> The ones who walked in skeptical, resistant, or just plain tired of programs that treated them like a number. What I've learned is that the physical and mental sides of training are inseparable — when your body feels strong, your mind follows. And when the process feels right, the results take care of themselves.<br><br>I'm based in Charleston, SC. I coach remotely through Trainerize. Every program I write is <strong>built from scratch for you</strong> — your goals, your schedule, your life.</p>
   </section>
 
   <section class="packages">
@@ -348,10 +367,15 @@
     </div>
   </section>
 
+  <section class="about">
+    <div class="section-label">About Patrick</div>
+    <p class="about-text">I've spent years coaching people who <strong>didn't think the gym was for them.</strong> The ones who walked in skeptical, resistant, or just plain tired of programs that treated them like a number. What I've learned is that the physical and mental sides of training are inseparable — when your body feels strong, your mind follows. And when the process feels right, the results take care of themselves.<br><br>I'm based in Charleston, SC. I coach remotely through Trainerize. Every program I write is <strong>built from scratch for you</strong> — your goals, your schedule, your life.</p>
+  </section>
+
   <section class="cta-section">
     <h2 class="cta-headline">Ready to <em>get started?</em></h2>
     <p class="cta-sub">Send an email and I'll get back to you within 24 hours. We'll figure out which package fits your life before you commit to anything.</p>
-    <a href="mailto:patrickjudgefitness@gmail.com" class="cta-button">Email me to start</a>
+    <a href="mailto:patrickjudgefitness@gmail.com?subject=Getting%20Started%20with%20PJudge%20Fitness&body=Hi%20Patrick%21%20I%27m%20interested%20in%20learning%20more%20about%20your%20remote%20coaching%20programs.%20I%27d%20love%20to%20connect%20and%20figure%20out%20which%20option%20is%20the%20right%20fit%20for%20me." class="cta-button">Email me to start</a>
   </section>
 
 </div>
