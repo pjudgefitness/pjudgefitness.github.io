@@ -26,44 +26,6 @@
     min-height: 100vh;
   }
 
-  /* VERSION TOGGLE */
-  .version-toggle {
-    position: fixed;
-    top: 16px;
-    right: 16px;
-    z-index: 100;
-    display: flex;
-    gap: 6px;
-    background: rgba(14,14,14,0.9);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 6px;
-    backdrop-filter: blur(8px);
-  }
-  .version-toggle button {
-    font-family: 'Barlow', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    padding: 6px 14px;
-    border-radius: 5px;
-    border: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    background: transparent;
-    color: var(--gray);
-  }
-  .version-toggle button.active {
-    background: var(--accent);
-    color: var(--black);
-  }
-
-  /* PAGES */
-  .page { display: none; }
-  .page.active { display: block; }
-
-  /* SHARED COMPONENTS */
   .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
 
   /* HERO */
@@ -101,7 +63,7 @@
     line-height: 1.6;
   }
 
-  /* ABOUT (Version B only) */
+  /* ABOUT */
   .about {
     padding: 60px 0;
     border-bottom: 1px solid var(--border);
@@ -129,9 +91,7 @@
 
   /* PACKAGES */
   .packages { padding: 60px 0; }
-  .packages-header {
-    margin-bottom: 32px;
-  }
+  .packages-header { margin-bottom: 32px; }
   .packages-title {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: 36px;
@@ -157,15 +117,14 @@
     gap: 16px;
     align-items: start;
     transition: border-color 0.2s, background 0.2s;
-    cursor: default;
   }
   .package:hover {
-    border-color: rgba(200,240,97,0.3);
+    border-color: rgba(232,87,42,0.3);
     background: #1e1e1e;
   }
   .package.featured {
-    border-color: rgba(200,240,97,0.4);
-    background: #1a1f10;
+    border-color: rgba(232,87,42,0.5);
+    background: #1f1510;
   }
 
   .pkg-name {
@@ -230,26 +189,12 @@
     gap: 24px;
     margin-top: 24px;
   }
-  .include-item { }
-  .include-icon {
-    font-size: 22px;
-    margin-bottom: 8px;
-  }
-  .include-title {
-    font-size: 13px;
-    font-weight: 500;
-    margin-bottom: 4px;
-  }
-  .include-desc {
-    font-size: 12px;
-    color: var(--gray);
-    line-height: 1.5;
-  }
+  .include-icon { font-size: 22px; margin-bottom: 8px; }
+  .include-title { font-size: 13px; font-weight: 500; margin-bottom: 4px; }
+  .include-desc { font-size: 12px; color: var(--gray); line-height: 1.5; }
 
   /* CTA */
-  .cta-section {
-    padding: 60px 0 80px;
-  }
+  .cta-section { padding: 60px 0 80px; }
   .cta-headline {
     font-family: 'Barlow Condensed', sans-serif;
     font-size: clamp(32px, 7vw, 52px);
@@ -258,10 +203,7 @@
     line-height: 1;
     margin-bottom: 20px;
   }
-  .cta-headline em {
-    font-style: normal;
-    color: var(--accent);
-  }
+  .cta-headline em { font-style: normal; color: var(--accent); }
   .cta-sub {
     font-size: 15px;
     color: var(--gray);
@@ -299,262 +241,124 @@
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
   }
-  .page.active .hero,
-  .page.active .about,
-  .page.active .packages,
-  .page.active .includes,
-  .page.active .cta-section {
-    animation: fadeUp 0.5s ease both;
-  }
-  .page.active .about { animation-delay: 0.05s; }
-  .page.active .packages { animation-delay: 0.1s; }
-  .page.active .includes { animation-delay: 0.15s; }
-  .page.active .cta-section { animation-delay: 0.2s; }
+  .hero { animation: fadeUp 0.5s ease both; }
+  .about { animation: fadeUp 0.5s ease 0.05s both; }
+  .packages { animation: fadeUp 0.5s ease 0.1s both; }
+  .includes { animation: fadeUp 0.5s ease 0.15s both; }
+  .cta-section { animation: fadeUp 0.5s ease 0.2s both; }
 </style>
 </head>
 <body>
 
-<!-- VERSION TOGGLE -->
-<div class="version-toggle">
-  <button class="active" onclick="showVersion('a')">Ver A</button>
-  <button onclick="showVersion('b')">Ver B</button>
-  <div style="width:1px;background:rgba(255,255,255,0.15);margin:2px 2px;"></div>
-  <button onclick="setColor('#e8572a')" title="Burnt Orange" style="width:22px;height:22px;padding:0;border-radius:50%;background:#e8572a;border:2px solid rgba(255,255,255,0.5);"></button>
-  <button onclick="setColor('#3b82f6')" title="Electric Blue" style="width:22px;height:22px;padding:0;border-radius:50%;background:#3b82f6;border:2px solid rgba(255,255,255,0.2);"></button>
-  <button onclick="setColor('#f5c842')" title="Golden Yellow" style="width:22px;height:22px;padding:0;border-radius:50%;background:#f5c842;border:2px solid rgba(255,255,255,0.2);"></button>
-  <button onclick="setColor('#e8e8e8')" title="Clean White" style="width:22px;height:22px;padding:0;border-radius:50%;background:#e8e8e8;border:2px solid rgba(255,255,255,0.2);"></button>
-  <button onclick="setColor('#c8f061')" title="Original Green" style="width:22px;height:22px;padding:0;border-radius:50%;background:#c8f061;border:2px solid rgba(255,255,255,0.2);"></button>
+<div class="container">
+
+  <section class="hero">
+    <div class="hero-eyebrow">PJudge Fitness · Remote Coaching</div>
+    <h1 class="hero-headline">Train your body.<br><em>Clear your mind.</em></h1>
+    <p class="hero-sub">Custom strength & conditioning programming — built around you, delivered remotely, and backed by a coach who actually gives a damn.</p>
+  </section>
+
+  <section class="about">
+    <div class="section-label">About Patrick</div>
+    <p class="about-text">I've spent years coaching people who <strong>didn't think the gym was for them.</strong> The ones who walked in skeptical, resistant, or just plain tired of programs that treated them like a number. What I've learned is that the physical and mental sides of training are inseparable — when your body feels strong, your mind follows. And when the process feels right, the results take care of themselves.<br><br>I'm based in Charleston, SC. I coach remotely through Trainerize. Every program I write is <strong>built from scratch for you</strong> — your goals, your schedule, your life.</p>
+  </section>
+
+  <section class="packages">
+    <div class="packages-header">
+      <div class="section-label">Choose your plan</div>
+      <div class="packages-title">Programming packages</div>
+    </div>
+    <div class="package-grid">
+
+      <div class="package">
+        <div>
+          <div class="pkg-freq">1 day / week</div>
+          <div class="pkg-name">The Start</div>
+          <div class="pkg-desc">One focused session per week — the right entry point if you're building a habit or working around a busy schedule. Custom programming, weekly check-ins, and direct access to me. A real coach, not a generic plan.</div>
+        </div>
+        <div class="pkg-right">
+          <div class="pkg-price">$320</div>
+          <div class="pkg-price-sub">per month</div>
+        </div>
+      </div>
+
+      <div class="package">
+        <div>
+          <div class="pkg-freq">2 days / week</div>
+          <div class="pkg-name">The Commitment</div>
+          <div class="pkg-desc">Two days a week is where consistency becomes identity. Fully custom programming built around your goals, weekly check-ins, ongoing adjustments, and a coach in your corner every step of the way.</div>
+        </div>
+        <div class="pkg-right">
+          <div class="pkg-price">$560</div>
+          <div class="pkg-price-sub">per month</div>
+        </div>
+      </div>
+
+      <div class="package featured">
+        <div>
+          <div class="popular-badge">Most popular</div>
+          <div class="pkg-freq">3 days / week</div>
+          <div class="pkg-name">The Investment</div>
+          <div class="pkg-desc">Three days a week, fully programmed, nothing left to guesswork. This is the level where real transformation happens — physically and mentally. Weekly check-ins, continuous program evolution, and direct access to me whenever you need it.</div>
+        </div>
+        <div class="pkg-right">
+          <div class="pkg-price">$720</div>
+          <div class="pkg-price-sub">per month</div>
+        </div>
+      </div>
+
+      <div class="package">
+        <div>
+          <div class="pkg-freq">4 days / week</div>
+          <div class="pkg-name">The Full Send</div>
+          <div class="pkg-desc">Four days a week for those who are all in. Maximum programming, maximum access, maximum results. Weekly check-ins, continuous adjustments, and a coach as committed to your goals as you are.</div>
+        </div>
+        <div class="pkg-right">
+          <div class="pkg-price">$800</div>
+          <div class="pkg-price-sub">per month</div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section class="includes">
+    <div class="section-label">Every package includes</div>
+    <div class="includes-grid">
+      <div class="include-item">
+        <div class="include-icon">📋</div>
+        <div class="include-title">Custom programming</div>
+        <div class="include-desc">Built for your goals, your schedule, your starting point</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">💬</div>
+        <div class="include-title">Weekly check-ins</div>
+        <div class="include-desc">Text or in-app</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">🔄</div>
+        <div class="include-title">Ongoing adjustments</div>
+        <div class="include-desc">Your program evolves as you do</div>
+      </div>
+      <div class="include-item">
+        <div class="include-icon">🤝</div>
+        <div class="include-title">Direct access</div>
+        <div class="include-desc">Real coach, real responses, real accountability</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-section">
+    <h2 class="cta-headline">Ready to <em>get started?</em></h2>
+    <p class="cta-sub">Send an email and I'll get back to you within 24 hours. We'll figure out which package fits your life before you commit to anything.</p>
+    <a href="mailto:patrickjudgefitness@gmail.com" class="cta-button">Email me to start</a>
+  </section>
+
 </div>
 
-<!-- ===================== VERSION A ===================== -->
-<div class="page active" id="version-a">
-  <div class="container">
+<footer>
+  <div class="container">© 2026 PJudge Fitness · Charleston, SC · patrickjudgefitness@gmail.com</div>
+</footer>
 
-    <section class="hero">
-      <div class="hero-eyebrow">PJudge Fitness · Remote Coaching</div>
-      <h1 class="hero-headline">Train your body.<br><em>Clear your mind.</em></h1>
-      <p class="hero-sub">Custom strength & conditioning programming built around you — not a template, not a PDF. A real coach in your corner.</p>
-    </section>
-
-    <section class="packages">
-      <div class="packages-header">
-        <div class="section-label">Choose your plan</div>
-        <div class="packages-title">Programming packages</div>
-      </div>
-      <div class="package-grid">
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">1 day / week</div>
-            <div class="pkg-name">The Start</div>
-            <div class="pkg-desc">One focused session per week — the right entry point if you're building a habit or working around a busy schedule. Custom programming, weekly check-ins, and direct access to me. A real coach, not a generic plan.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$320</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">2 days / week</div>
-            <div class="pkg-name">The Commitment</div>
-            <div class="pkg-desc">Two days a week is where consistency becomes identity. Fully custom programming built around your goals, weekly check-ins, ongoing adjustments, and a coach in your corner every step of the way.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$560</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package featured">
-          <div>
-            <div class="popular-badge">Most popular</div>
-            <div class="pkg-freq">3 days / week</div>
-            <div class="pkg-name">The Investment</div>
-            <div class="pkg-desc">Three days a week, fully programmed, nothing left to guesswork. This is the level where real transformation happens — physically and mentally. Weekly check-ins, continuous program evolution, and direct access to me whenever you need it.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$720</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">4 days / week</div>
-            <div class="pkg-name">The Full Send</div>
-            <div class="pkg-desc">Four days a week for those who are all in. Maximum programming, maximum access, maximum results. Weekly check-ins, continuous adjustments, and a coach as committed to your goals as you are.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$800</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="includes">
-      <div class="section-label">Every package includes</div>
-      <div class="includes-grid">
-        <div class="include-item">
-          <div class="include-icon">📋</div>
-          <div class="include-title">Custom programming</div>
-          <div class="include-desc">Built for your goals, your schedule, your starting point</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">💬</div>
-          <div class="include-title">Weekly check-ins</div>
-          <div class="include-desc">Text or in-app</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">🔄</div>
-          <div class="include-title">Ongoing adjustments</div>
-          <div class="include-desc">Your program evolves as you do</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">🤝</div>
-          <div class="include-title">Direct access</div>
-          <div class="include-desc">Real coach, real responses, real accountability</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <h2 class="cta-headline">Ready to <em>get started?</em></h2>
-      <p class="cta-sub">Send an email and I'll get back to you within 24 hours. We'll figure out which package fits your life before you commit to anything.</p>
-      <a href="mailto:patrickjudgefitness@gmail.com" class="cta-button">Email me to start</a>
-    </section>
-
-  </div>
-  <footer><div class="container">© 2026 PJudge Fitness · Charleston, SC · patrickjudgefitness@gmail.com</div></footer>
-</div>
-
-<!-- ===================== VERSION B ===================== -->
-<div class="page" id="version-b">
-  <div class="container">
-
-    <section class="hero">
-      <div class="hero-eyebrow">PJudge Fitness · Remote Coaching</div>
-      <h1 class="hero-headline">Train your body.<br><em>Clear your mind.</em></h1>
-      <p class="hero-sub">Custom strength & conditioning programming — built around you, delivered remotely, and backed by a coach who actually gives a damn.</p>
-    </section>
-
-    <section class="about">
-      <div class="section-label">About Patrick</div>
-      <p class="about-text">I've spent years coaching people who <strong>didn't think the gym was for them.</strong> The ones who walked in skeptical, resistant, or just plain tired of programs that treated them like a number. What I've learned is that the physical and mental sides of training are inseparable — when your body feels strong, your mind follows. And when the process feels right, the results take care of themselves.<br><br>I'm based in Charleston, SC. I coach remotely through Trainerize. Every program I write is <strong>built from scratch for you</strong> — your goals, your schedule, your life.</p>
-    </section>
-
-    <section class="packages">
-      <div class="packages-header">
-        <div class="section-label">Choose your plan</div>
-        <div class="packages-title">Programming packages</div>
-      </div>
-      <div class="package-grid">
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">1 day / week</div>
-            <div class="pkg-name">The Start</div>
-            <div class="pkg-desc">One focused session per week — the right entry point if you're building a habit or working around a busy schedule. Custom programming, weekly check-ins, and direct access to me. A real coach, not a generic plan.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$320</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">2 days / week</div>
-            <div class="pkg-name">The Commitment</div>
-            <div class="pkg-desc">Two days a week is where consistency becomes identity. Fully custom programming built around your goals, weekly check-ins, ongoing adjustments, and a coach in your corner every step of the way.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$560</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package featured">
-          <div>
-            <div class="popular-badge">Most popular</div>
-            <div class="pkg-freq">3 days / week</div>
-            <div class="pkg-name">The Investment</div>
-            <div class="pkg-desc">Three days a week, fully programmed, nothing left to guesswork. This is the level where real transformation happens — physically and mentally. Weekly check-ins, continuous program evolution, and direct access to me whenever you need it.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$720</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-        <div class="package">
-          <div>
-            <div class="pkg-freq">4 days / week</div>
-            <div class="pkg-name">The Full Send</div>
-            <div class="pkg-desc">Four days a week for those who are all in. Maximum programming, maximum access, maximum results. Weekly check-ins, continuous adjustments, and a coach as committed to your goals as you are.</div>
-          </div>
-          <div class="pkg-right">
-            <div class="pkg-price">$800</div>
-            <div class="pkg-price-sub">per month</div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <section class="includes">
-      <div class="section-label">Every package includes</div>
-      <div class="includes-grid">
-        <div class="include-item">
-          <div class="include-icon">📋</div>
-          <div class="include-title">Custom programming</div>
-          <div class="include-desc">Built for your goals, your schedule, your starting point</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">💬</div>
-          <div class="include-title">Weekly check-ins</div>
-          <div class="include-desc">Text or in-app</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">🔄</div>
-          <div class="include-title">Ongoing adjustments</div>
-          <div class="include-desc">Your program evolves as you do</div>
-        </div>
-        <div class="include-item">
-          <div class="include-icon">🤝</div>
-          <div class="include-title">Direct access</div>
-          <div class="include-desc">Real coach, real responses, real accountability</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="cta-section">
-      <h2 class="cta-headline">Ready to <em>get started?</em></h2>
-      <p class="cta-sub">Send an email and I'll get back to you within 24 hours. We'll figure out which package fits your life before you commit to anything.</p>
-      <a href="mailto:patrickjudgefitness@gmail.com" class="cta-button">Email me to start</a>
-    </section>
-
-  </div>
-  <footer><div class="container">© 2026 PJudge Fitness · Charleston, SC · patrickjudgefitness@gmail.com</div></footer>
-</div>
-
-<script>
-function showVersion(v) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.version-toggle button[onclick^="showVersion"]').forEach(b => b.classList.remove('active'));
-  document.getElementById('version-' + v).classList.add('active');
-  event.target.classList.add('active');
-  window.scrollTo(0, 0);
-}
-function setColor(hex) {
-  document.documentElement.style.setProperty('--accent', hex);
-  // Dark text on light accent colors
-  const light = ['#e8e8e8','#f5c842','#c8f061'];
-  const textColor = light.includes(hex) ? '#0e0e0e' : '#0e0e0e';
-}
-</script>
 </body>
 </html>
